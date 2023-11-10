@@ -118,15 +118,13 @@
         function get_examples() {
           let container = $("#example-list");
           container.empty();
-
-          $("#example-list").empty()
           $.ajax({
               type: "GET",
               url: `/api/get_exs?word=${word}`,
               data: {},
               success: function (response) {
                 console.log(response)
-                if (response.result === 'success') {
+            
               let examples = response.examples;
               let temp_html = '';
               for (let i = 0; i < examples.length; i++) {
@@ -138,8 +136,8 @@
                   ${sentence}&nbsp;&nbsp;&nbsp;<a href="javascript:delete_ex('${id}')">delete</a>
                   </li>`;
                 }
-              list.append(temp_html);
-            }
+              container.append(temp_html);
+            
           }
           })
         }
@@ -156,10 +154,10 @@
               },
               success: function (response) {
                   console.log(response)
-                  if (response.result === 'succses'){
+                  
                     alert(response.msg);
                     get_examples()
-                  }
+                  
               }
           });
 
@@ -177,7 +175,7 @@
               },
               success: function (response) {
                 alert(response.msg);
-                get_examples()
+                get_examples();
               }
           });
       }

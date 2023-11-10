@@ -5,7 +5,7 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 from pymongo import MongoClient
 import requests
 from datetime import datetime
-from bson import objectid
+from bson import ObjectId
 
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
@@ -144,7 +144,7 @@ def save_ex():
 def delete_ex():
     id = request.form.get('id')
     word = request.form.get('word')
-    db.examples.delete_one({'_id': objectid(id)})
+    db.examples.delete_one({'_id': ObjectId(id)})
     return jsonify({
         'result': 'success',
         'msg': f'your example for the word, {word}, was deleted!',
